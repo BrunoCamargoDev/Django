@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+   {% csrf_token %}
+
+<table>
+   {{ form.as_table}}
+</table>
+<input type="submit" value="Adicionar filme" class="btn btn-primary">
+</form>
+
+
+ <style>
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    border-spacing: 10px;
+}
+
+td {
+    padding: 8px;
+    vertical-align: top;
+}
+
+input[type="text"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input[type="submit"].btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"].btn-primary:hover {
+    background-color: #0056b3;
+}
+ </style>
+ {% endblock %}
