@@ -20,9 +20,12 @@ class FilmesListView(ListView):
 
   def get_queryset(self):
     filmes = super().get_queryset().order_by('titulo')
-    search = self.request.GET.get('search')
-    if search:
-      filmes = filmes.filter(titulo__contains=search)
+    titulo = self.request.GET.get('titulo')
+    ator = self.request.GET.get('ator')
+    if titulo:
+      filmes = filmes.filter(titulo__contains=titulo)
+    if ator:
+      filmes = filmes.filter(atores__nome__icontains=ator)
     return filmes
 
 

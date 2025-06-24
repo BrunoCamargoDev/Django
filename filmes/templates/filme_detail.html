@@ -71,6 +71,10 @@
       background-color: #d2221c;
     }
 
+    .btn-neutral {
+      background-color: #474444;
+    }
+
     .error-message {
       color: #d9534f;
       font-size: 14px;
@@ -92,13 +96,20 @@
       <p><strong>Sinopse:</strong> {{ filme.sinopse }}</p>
       <p><strong>Duração:</strong> {{ filme.duracao }}</p>
       <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
-      <p><strong>Atores:</strong> {{ filme.atores }}</p>
+      <p><strong>Atores:</strong>
+       {% for ator in filme.atores.all %}
+         {{ ator.nome }}{% if not forloop.last %}, {% endif %}
+       {% empty %}
+          Nenhum ator cadastrado.
+        {% endfor %}
+      </p>
       <p><strong>Gênero:</strong> {{ filme.genero }}</p>
   </div>
   {%if user.is_authenticated%}
     <div class="buttons-container">
       <a href="{% url 'filme_update' pk=object.pk %}" class="btn btn-primary">Editar</a>
       <a href="{% url 'filme_delete' pk=object.pk %}" class="btn btn-danger">Deletar</a>
+      <a href="{% url 'filmes_list' %}" class="btn btn-neutral">Voltar</a>
     </div>
   {% endif %}  
 

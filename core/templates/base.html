@@ -80,17 +80,26 @@
  </head>
  <body>
    <header>
-     <nav>
-       <ul>
+     <nav style="display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;">
+
+       <ul style="display: flex; list-style: none; margin: 0; padding: 0;">
         <li><a href="{% url 'filmes_list' %}">Filmes</a></li>
 
         {% if user.is_authenticated %}
-          <li> Olá, {{ user.username }}</li>
           <li><a href="{% url 'novo_filme' %}">Cadastrar Filmes</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
           <li><a href="{% url 'login' %}">Login</a></li>
           <li><a href="{% url 'usuario' %}">Registre</a></li>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <div style="color: white; position: absolute; right: 10px; padding-right: 10px; font-size: 18px;">
+          Olá, {{ user.username }}
+        </div>
         {% endif %}
        </ul>
      </nav>
